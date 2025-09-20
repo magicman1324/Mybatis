@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="testMapper">
+    <select id="selectAllUser" resultType="User">
+        select * from user
+    </select>
+    
+    <select id="selectUserById" resultType="User" parameterType="_int">
+        select * from user where id =#{id}
+    </select>
+
+    <select id="selectUserByIdAndAge" resultMap="test">
+        select * from user where id=#{id} and age=#{age}
+    </select>
+    <resultMap id="test" type="User">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age"   property="age"   />
+    </resultMap>
+
+    <select id="selectUserByAge" resultType="User">
+        select * from user where age>=#{age}
+    </select>
+</mapper>
