@@ -8,18 +8,17 @@
     </select>
 
     <select id="selectUserById" resultMap="test" >
-        select * from user left join user_detail on user.id = user_detail.id where user.id = #{id}
+        select * from user left join book on user.id = book.uid where user.id = #{id}
     </select>
     <resultMap id="test" type="User">
         <id property="id" column="id"/>
         <result property="name" column="name"   />
         <result property="age"  column="age"    />
-        <association property="detail" >
-            <id property="id"   column="id"/>
-            <result property="description" column="description"/>
-            <result property="register" column="register"/>
-            <result property="avatar"   column="avatar"/>
-        </association>
+        <collection property="books" ofType="Book">
+            <id column="bid" property="bid"/>
+            <result column="title"  property="title"/>
+            <result column="uid"    property="uid"/>
+        </collection>
     </resultMap>
 
     <select id="selectUserByIdAndAge" resultType="User">
