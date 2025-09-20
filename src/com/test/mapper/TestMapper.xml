@@ -6,19 +6,26 @@
     <select id="selectAllUser" resultType="User">
         select * from user
     </select>
-    
-    <select id="selectUserById" resultType="User" parameterType="_int">
-        select * from user where id =#{id}
+
+    <select id="selectUserById" resultMap="test" >
+        select * from user left join user_detail on user.id = user_detail.id where user.id = #{id}
     </select>
+    <resultMap id="test" type="User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"   />
+        <result property="age"  column="age"    />
+        <association property="detail" >
+            <id property="id"   column="id"/>
+            <result property="description" column="description"/>
+            <result property="register" column="register"/>
+            <result property="avatar"   column="avatar"/>
+        </association>
+    </resultMap>
 
     <select id="selectUserByIdAndAge" resultType="User">
         select * from user where id=#{id} and age=#{age}
     </select>
-    <resultMap id="test" type="User">
-        <id column="id" property="id"/>
-        <result column="name" property="name"/>
-        <result column="age"   property="age"   />
-    </resultMap>
+
 
     <select id="selectUserByAge" resultType="User">
         select * from user where age>=#{age}

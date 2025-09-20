@@ -9,7 +9,7 @@ public class Main{
     public static void main(String[] args) throws Exception {
         try(SqlSession session=MybatisUtils.openSession(true)){
             TestMapper mapper = session.getMapper(TestMapper.class);
-            System.out.println(mapper.selectUserByIdAndAge(1, 12));
+            System.out.println(mapper.selectUserById(1));
 
 
         }
