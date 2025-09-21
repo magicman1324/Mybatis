@@ -29,4 +29,16 @@
     <select id="selectUserByAge" resultType="User">
         select * from user where age>=#{age}
     </select>
+
+    <insert id="addUser" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into user (name,age) values (#{name},#{age})
+    </insert>
+    
+    <update id="setUserAgeById">
+        update user set age=#{age} where id=#{id}
+    </update>
+
+    <delete id="deleteUserById">
+        delete from user where id=#{id}
+    </delete>
 </mapper>

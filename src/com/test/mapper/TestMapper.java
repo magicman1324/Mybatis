@@ -10,4 +10,7 @@ public interface TestMapper {
     User selectUserById(int id);
     List<User>selectUserByAge(int id);
     User selectUserByIdAndAge(@Param("id") int id,@Param("age") int age);
+    int addUser(User user);
+    int setUserAgeById(User user);
+    int deleteUserById(int id);
 }
